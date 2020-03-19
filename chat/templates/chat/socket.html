@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>12345</title>
+</head>
+<body>
+<H1>hello</H1>
+</body>
+<script>
+    var ws = new WebSocket("ws://" + window.location.host + '/ws/send/');
+    ws.onopen = function () {
+        console.log('WebSocket建立连接');
+    };
+    ws.onmessage = function (e) {
+        console.log('WebSocket接收消息：');
+        var data = JSON.parse(e.data);
+        console.log(data);
+        var message = data['message'];
+        alert(message);
+        console.log(message);
+    };
+    ws.onclose = function (e) {
+        console.error('WebSocket关闭连接');
+    };
+</script>
+</html>
